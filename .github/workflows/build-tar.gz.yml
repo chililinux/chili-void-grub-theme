@@ -14,13 +14,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Criar arquivo .tar.gz
-      run: tar -cf void-grub-theme.tar.gz .
+      run: tar -cf chili-void-grub-theme.tar.gz .
 
     - name: Salvar arquivo .tar.gz como artefato
       uses: actions/upload-artifact@v2
       with:
         name: arquivos
-        path: void-grub-theme.tar.gz
+        path: chili-void-grub-theme.tar.gz
 
     - name: Criar release
       id: create_release
@@ -42,7 +42,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./void-grub-theme.tar.gz
-        asset_name: void-grub-theme.tar.gz
+        asset_path: ./chili-void-grub-theme.tar.gz
+        asset_name: chili-void-grub-theme.tar.gz
         asset_content_type: application/gzip
 

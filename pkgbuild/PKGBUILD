@@ -1,5 +1,5 @@
 # Maintainer: Vilmar Catafesta <vcatafesta@gmail.com>
-pkgname=void-grub-theme
+pkgname=chili-void-grub-theme
 pkgdesc="Void theme for grub"
 # depends=('')
 # makedepends=('')
