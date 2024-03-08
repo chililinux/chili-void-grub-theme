@@ -1,0 +1,48 @@
+name: Criar release e arquivo .tar.gz
+
+on:
+  push:
+    branches:
+      - main  # ajuste conforme necessário
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v2
+
+    - name: Criar arquivo .tar.gz
+      run: tar -cf void-grub-theme.tar.gz .
+
+    - name: Salvar arquivo .tar.gz como artefato
+      uses: actions/upload-artifact@v2
+      with:
+        name: arquivos
+        path: void-grub-theme.tar.gz
+
+    - name: Criar release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        tag_name: v1.0.0  # ajuste conforme necessário
+        release_name: Release v1.0.0  # ajuste conforme necessário
+        body: |
+          Descrição do release aqui.
+        draft: false
+        prerelease: false
+
+    - name: Fazer upload do arquivo .tar.gz no release
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./void-grub-theme.tar.gz
+        asset_name: void-grub-theme.tar.gz
+        asset_content_type: application/gzip
+
