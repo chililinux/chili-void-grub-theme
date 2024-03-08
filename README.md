@@ -1,1 +1,1 @@
-# void-grub-theme
+# chili-void-grub-theme
